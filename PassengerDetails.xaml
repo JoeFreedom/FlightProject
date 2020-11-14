@@ -8,25 +8,30 @@
         Title="PassengerDetails" Height="450" Width="800">
     <Grid>
         <TextBlock x:Name="txtBlck_Surname" HorizontalAlignment="Left" Height="20" Margin="54,106,0,0" Text="Last Name" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" FontSize="15"/>
-        <TextBox x:Name="textBox_Surname" HorizontalAlignment="Left" Margin="175,106,0,0" Text="" BorderBrush="Aquamarine" BorderThickness="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25"/>
+        <TextBox x:Name="textBox_Surname" HorizontalAlignment="Left" Margin="175,106,0,0" Text="" BorderBrush="Aquamarine" BorderThickness="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" FontSize="20" Height="35"/>
         <TextBlock x:Name="txtBlck_Sex" HorizontalAlignment="Left" Margin="416,149,0,0" TextAlignment="Center" Text="Sex" TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="62" FontSize="15"/>
-        <TextBox x:Name="textBox_Sex" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="492,146,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="25" FontSize="15"/>
+        <TextBox x:Name="textBox_Sex" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="492,146,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="35" FontSize="20"/>
         <TextBlock x:Name="txtBlck_FirstName" HorizontalAlignment="Left" Margin="400,106,0,0" Text="First Name" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="78" FontSize="15"/>
-        <TextBox x:Name="textBox_AirComp" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="492,106,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="25"/>
+        <TextBox x:Name="textBox_FirstName" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="492,106,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" FontSize="20" Height="35"/>
         <TextBlock x:Name="txtBlck_PassportNum" HorizontalAlignment="Left" Margin="37,202,0,0" Text="Passport Number" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="115" FontSize="15"/>
-        <TextBox x:Name="textBox_DepartTime" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="175,198,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="24" FontSize="15"/>
+        <TextBox x:Name="textBox_PassportNum" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="175,198,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="35" FontSize="20"/>
         <TextBlock x:Name="txtBlck_Nationality" HorizontalAlignment="Left" Margin="400,186,0,0" Text="Nationality" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Width="78" FontSize="15"/>
-        <TextBox x:Name="textBox_Nationality" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="492,185,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Height="25" FontSize="15"/>
+        <TextBox x:Name="textBox_Nationality" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="492,185,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Height="35" FontSize="20"/>
         <TextBlock x:Name="txtBlck_DateOfBirth" HorizontalAlignment="Left" Margin="49,149,0,0" Text="Date of Birth" TextWrapping="Wrap" Width="103" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox x:Name="textBox_DateOfBirth" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="175,144,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Height="26" FontSize="15" />
-        <TextBlock x:Name="txtBlck_DateIssued" HorizontalAlignment="Left" Margin="54,254,0,0" Text="Date Issued" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="90" FontSize="15"/>
-        <TextBox x:Name="textBox_DateIssued" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="175,252,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="24" FontSize="15"/>
-        <TextBlock x:Name="txtBlck_DateOfExpiry" HorizontalAlignment="Left" Margin="389,256,0,0" Text="Date Of Expiry" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="116" FontSize="15"/>
-        <TextBox x:Name="textBox_ArrivalDate" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="492,252,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Height="25" FontSize="15"/>
-        <Button x:Name="button_Edit" Content="Edit" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="210,326,0,0" VerticalAlignment="Top" Height="35" Width="65"/>
-        <Button x:Name="button_Save" Content="Save" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="355,326,0,0" VerticalAlignment="Top" Height="35" Width="65"/>
-        <Button x:Name="button_Close" Content="Close" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="492,326,0,0" VerticalAlignment="Top" Height="35" Width="65"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="53" Margin="68,27,0,0" Text="Passenger Details" TextWrapping="Wrap" VerticalAlignment="Top" Width="610" FontSize="40" FontStyle="Italic" Foreground="ForestGreen" TextAlignment="Center" FontFamily="Caladea"/>
+        <TextBox x:Name="textBox_DateOfBirth" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="175,149,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Height="35" FontSize="20" />
+        <TextBlock x:Name="txtBlck_DateIssued" HorizontalAlignment="Left" Margin="50,289,0,0" Text="Date Issued" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="90" FontSize="15"/>
+        <TextBox x:Name="textBox_DateIssued" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="175,285,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="35" FontSize="20"/>
+        <TextBlock x:Name="txtBlck_DateOfExpiry" HorizontalAlignment="Left" Margin="389,281,0,0" Text="Date Of Expiry" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="103" FontSize="15"/>
+        <TextBox x:Name="textBox_DateOfExpiry" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="497,281,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Height="35" FontSize="20"/>
+        <Button x:Name="button_Edit" Content="Edit" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="242,339,0,0" VerticalAlignment="Top" Height="35" Width="66" Click="button_Edit_Click"/>
+        <Button x:Name="button_Save" Content="Save" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="335,339,0,0" VerticalAlignment="Top" Height="35" Width="65"/>
+        <Button x:Name="button_Add" Content="Add" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="427,339,0,0" VerticalAlignment="Top" Height="36" Width="65" Click="button_Add_Click"/>
+        <Button x:Name="button_Close" Content="Close" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="525,339,0,0" VerticalAlignment="Top" Height="35" Width="65" Click="button_Close_Click"/>
+        <TextBlock x:Name="txtBlckTitle" HorizontalAlignment="Left" Height="53" Margin="68,27,0,0" Text="Passenger Details" TextWrapping="Wrap" VerticalAlignment="Top" Width="610" FontSize="40" FontStyle="Italic" Foreground="ForestGreen" TextAlignment="Center" FontFamily="Caladea"/>
+        <TextBlock x:Name="txtBlck_Visa" HorizontalAlignment="Left" Margin="55,243,0,0" Text="Visa Type" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="15" Height="20" Width="91"/>
+        <TextBox x:Name="textBox_Visa" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="175,241,0,0" Text="" Height="35" TextWrapping="Wrap" VerticalAlignment="Top" Width="383" FontSize="20"/>
+        <TextBlock x:Name="textBlock_id" HorizontalAlignment="Left" Margin="563,246,0,0" Text="ID NUM" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="15" Height="20" Width="64"/>
+        <TextBox x:Name="textBox_id" HorizontalAlignment="Left" Margin="632,241,0,0" Text="" TextWrapping="Wrap" BorderBrush="Aquamarine" BorderThickness="3" VerticalAlignment="Top" Width="56" Height="30" FontSize="15"/>
 
     </Grid>
 </Window>

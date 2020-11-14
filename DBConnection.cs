@@ -7,107 +7,40 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace FlightDetails_CourseProject
 {
     public delegate void Message(string message);
-    public class DBconnection
+    public class DBConnection
     {
         public event Message Success;
         public event Message Error;
-        private MySqlConnection connection;
-
-        private readonly string host;
-        private readonly string database;
-        private readonly string port;
-        private readonly string username;
-        private readonly string pass;
-        private readonly string connString;
-
-        public DBconnection()
-        {
-            using (var file = new StreamReader("dbconnect.cfg"))
-            {
-                string tempLine;
-                while ((tempLine = file.ReadLine()) != null)
-                {
-                    tempLine = tempLine.Trim();
-                    var index = tempLine.IndexOf('=');
-                    if (index < 0)
-                        continue;
-                    var tempSymbols = tempLine.Substring(index + 1);
-                    var tempVar = tempLine.Substring(0, index);
-                    tempSymbols = tempSymbols.Trim();
-                    tempVar = tempVar.Trim();
-
-                    switch (tempVar)
-                    {
-                        case "host":
-                            host = tempSymbols;
-                            break;
-                        case "database":
-                            database = tempSymbols;
-                            break;
-                        case "port":
-                            port = tempSymbols;
-                            break;
-                        case "username":
-                            username = tempSymbols;
-                            break;
-                        case "pass":
-                            pass = tempSymbols;
-                            break;
-                    }
-                }
-            }
-            connString = "Server=" + host + ";Database=" + database + ";port=" + port + ";User Id=" + username + ";password=" + pass;
-        }
-
-        public DBconnection(string host, string database, string port, string username, string pass)
-        {
-            connString = "Server=" + host + ";Database=" + database + ";port=" + port + ";User Id=" + username + ";password=" + pass;
-        }
-
+        private const string HOST = "mysql60.hostland.ru";
+        private const string PORT = "3306";
+        private const string DATABASE = "host1323541_itstep2";
+        private const string USERNAME = "host1323541_itstep";
+        private const string PASSWORD = "269f43dc";
+        private const string connString = "Server=" + HOST + ";Database=" + DATABASE + ";port=" + PORT + ";User Id=" + USERNAME + ";password=" + PASSWORD;
+        private static MySqlConnection connection = new MySqlConnection(connString);
+        private static MySqlCommand command = new MySqlCommand();
         public void ConnectDB()
         {
-            if (connection != null && connection.Ping())
-            {
-                Error?.Invoke("Connected to Database already");
-                return;
-            }
             connection = new MySqlConnection(connString);
             connection.Open();
-            if (connection.Ping())
+            if (connection != null)
             {
-                Success?.Invoke("Connection to Databse successful");
+                Success?.Invoke("Connection successful"); // ??when do I see the success message, not showing
             }
             else
             {
-                Error?.Invoke("No connection to Database");
+                Error?.Invoke("No connection to Database"); // ??how to know when message not working
             }
         }
-
-        public async Task ConnectDBAsync()
-        {
-            if (connection != null && connection.Ping())
-            {
-                Error?.Invoke("[From async method] Connected to Database already");
-                return;
-            }
-            connection = new MySqlConnection(connString);
-            await connection.OpenAsync();
-            if (connection.Ping())
-            {
-                Success?.Invoke("[From async method] Connection successful");
-            }
-            else
-            {
-                Error?.Invoke("[From async method] No connection to Database");
-            }
-        }
-
         public MySqlDataReader SelectQuery(string sql)
         {
-         
+            //connection.Open(); // no need for this, connection already opened
+            if (connection != null)
+            {
                 var command = new MySqlCommand { Connection = connection, CommandText = sql };
                 var result = command.ExecuteReader();
                 if (result != null)
@@ -117,39 +50,19 @@ namespace FlightDetails_CourseProject
                 }
                 else
                 {
-                    Error?.Invoke("Query went south");
-                    return result;
-                }
-            
-        }
-
-        public async Task<DbDataReader> SelectQueryAsync(string sql)
-        {
-            if (connection.Ping())
-            {
-                var command = new MySqlCommand { Connection = connection, CommandText = sql };
-                var result = await command.ExecuteReaderAsync();
-                if (result != null)
-                {
-                    Success?.Invoke("[From async method] Query completed");
-                    return result;
-                }
-                else
-                {
-                    Error?.Invoke("[From async method] Query went south");
+                    Error?.Invoke("Something went wrong");
                     return result;
                 }
             }
             else
             {
-                Error?.Invoke("[From async method] No connection to Database");
+                Error?.Invoke("No connection to Database");
                 return null;
             }
         }
-
-        public int InsertQuery(string sql)
+        public int InsertUpdateQuery(string sql)
         {
-            if (connection.Ping())
+            if (connection != null)
             {
                 var command = new MySqlCommand { Connection = connection, CommandText = sql };
                 var result = command.ExecuteNonQuery();
@@ -169,104 +82,5 @@ namespace FlightDetails_CourseProject
                 return -1;
             }
         }
-
-        public async Task<int> InsertQueryAsync(string sql)
-        {
-            if (connection.Ping())
-            {
-                var command = new MySqlCommand { Connection = connection, CommandText = sql };
-                var result = await command.ExecuteNonQueryAsync();
-                if (result > 0)
-                {
-                    Success?.Invoke("[From async method] Entry to Database successful");
-                }
-                else
-                {
-                    Error?.Invoke("[From async method] Entry to Database unsuccessful");
-                }
-                return result;
-            }
-            else
-            {
-                Error?.Invoke("[From async method] No connection to Database");
-                return -1;
-            }
-        }
-
-        public int UpdateQuery(string sql)
-        {
-            if (connection.Ping())
-            {
-                var command = new MySqlCommand { Connection = connection, CommandText = sql };
-                var result = command.ExecuteNonQuery();
-                if (result > 0)
-                {
-                    Success?.Invoke("Changes to Database successful");
-                }
-                else
-                {
-                    Error?.Invoke("Changes to Database unsuccessful");
-                }
-                return result;
-            }
-            else
-            {
-                Error?.Invoke("Connection to Database unavailable");
-                return -1;
-            }
-        }
-
-        public async Task<int> UpdateQueryAsync(string sql)
-        {
-            if (connection.Ping())
-            {
-                var command = new MySqlCommand { Connection = connection, CommandText = sql };
-                var result = await command.ExecuteNonQueryAsync();
-                if (result > 0)
-                {
-                    Success?.Invoke("[From async method] Changes to Database successful");
-                }
-                else
-                {
-                    Error?.Invoke("[From async method] Changes to Database unsuccessful");
-                }
-                return result;
-            }
-            else
-            {
-                Error?.Invoke("[From async method] Connection to Database unavailable");
-                return -1;
-            }
-        }
-
-        public bool IsConnect()
-        {
-            return connection.Ping();
-        }
-
-        public void Close()
-        {
-            if (connection.Ping())
-            {
-                connection.Close();
-                Success?.Invoke("Access denied");
-            }
-            else
-            {
-                Error?.Invoke("Access to Database closed or doesn't exist");
-            }
-        }
-        public async Task CloseAsync()
-        {
-            if (connection.Ping())
-            {
-                await connection.CloseAsync();
-                Success?.Invoke("[From async method] Access denied");
-            }
-            else
-            {
-                Error?.Invoke("[From async method] Access to Database closed or doesn't exist");
-            }
-        }
-    }
+    }  
 }
