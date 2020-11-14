@@ -25,7 +25,7 @@ namespace FlightDetails_CourseProject
             InitializeComponent();
             dbconnection = new DBConnection();
         }     
-        private void button_Add_Click(object sender, RoutedEventArgs e)
+        private void button_Add_Save_Click(object sender, RoutedEventArgs e)
         {
             // TO-DO 
             // IfPassengerExists
