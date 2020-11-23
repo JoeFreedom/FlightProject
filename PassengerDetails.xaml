@@ -18,20 +18,18 @@
         <TextBlock x:Name="txtBlck_Nationality" HorizontalAlignment="Left" Margin="400,186,0,0" Text="Nationality" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Width="78" FontSize="15"/>
         <TextBox x:Name="textBox_Nationality" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="492,185,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Height="35" FontSize="20"/>
         <TextBlock x:Name="txtBlck_DateOfBirth" HorizontalAlignment="Left" Margin="49,149,0,0" Text="Date of Birth" TextWrapping="Wrap" Width="103" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox x:Name="textBox_DateOfBirth" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="175,149,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Height="35" FontSize="20" />
         <TextBlock x:Name="txtBlck_DateIssued" HorizontalAlignment="Left" Margin="50,289,0,0" Text="Date Issued" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="90" FontSize="15"/>
-        <TextBox x:Name="textBox_DateIssued" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="175,285,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="35" FontSize="20"/>
-        <TextBlock x:Name="txtBlck_DateOfExpiry" HorizontalAlignment="Left" Margin="389,281,0,0" Text="Date Of Expiry" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="103" FontSize="15"/>
-        <TextBox x:Name="textBox_DateOfExpiry" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="497,281,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Height="35" FontSize="20"/>
+        <TextBlock x:Name="txtBlck_DateOfExpiry" HorizontalAlignment="Left" Margin="388,289,0,0" Text="Date Of Expiry" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="102" FontSize="15"/>
         <Button x:Name="button_Edit" Content="Edit" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="242,339,0,0" VerticalAlignment="Top" Height="35" Width="66" Click="button_Edit_Click"/>
-        <Button x:Name="button_Save" Content="Save" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="335,339,0,0" VerticalAlignment="Top" Height="35" Width="65"/>
-        <Button x:Name="button_Add" Content="Add" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="427,339,0,0" VerticalAlignment="Top" Height="36" Width="65" Click="button_Add_Click"/>
+        <Button x:Name="button_Add_Save" Content="Add/Save" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="382,339,0,0" VerticalAlignment="Top" Height="36" Width="65" Click="button_Add_Save_Click"/>
         <Button x:Name="button_Close" Content="Close" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="525,339,0,0" VerticalAlignment="Top" Height="35" Width="65" Click="button_Close_Click"/>
         <TextBlock x:Name="txtBlckTitle" HorizontalAlignment="Left" Height="53" Margin="68,27,0,0" Text="Passenger Details" TextWrapping="Wrap" VerticalAlignment="Top" Width="610" FontSize="40" FontStyle="Italic" Foreground="ForestGreen" TextAlignment="Center" FontFamily="Caladea"/>
         <TextBlock x:Name="txtBlck_Visa" HorizontalAlignment="Left" Margin="55,243,0,0" Text="Visa Type" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="15" Height="20" Width="91"/>
         <TextBox x:Name="textBox_Visa" HorizontalAlignment="Left" BorderBrush="Aquamarine" BorderThickness="3" Margin="175,241,0,0" Text="" Height="35" TextWrapping="Wrap" VerticalAlignment="Top" Width="383" FontSize="20"/>
         <TextBlock x:Name="textBlock_id" HorizontalAlignment="Left" Margin="563,246,0,0" Text="ID NUM" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="15" Height="20" Width="64"/>
-        <TextBox x:Name="textBox_id" HorizontalAlignment="Left" Margin="632,241,0,0" Text="" TextWrapping="Wrap" BorderBrush="Aquamarine" BorderThickness="3" VerticalAlignment="Top" Width="56" Height="30" FontSize="15"/>
-
+        <TextBox x:Name="textBox_id" HorizontalAlignment="Left" Margin="632,241,0,0" Text="" TextWrapping="Wrap" BorderBrush="Aquamarine" BorderThickness="3" VerticalAlignment="Top" Width="56" Height="35" FontSize="20" IsEnabled="False"/>
+        <DatePicker x:Name="datepickerBD" HorizontalAlignment="Left" Margin="175,149,0,0" VerticalAlignment="Top" Width="200" Height="35" BorderBrush="Aquamarine" BorderThickness="3" FontSize="20" />
+        <DatePicker x:Name="datePickerIssued" HorizontalAlignment="Left" Margin="175,289,0,0" VerticalAlignment="Top" Width="200" Height="35" BorderBrush="Aquamarine" BorderThickness="3" FontSize="20"/>
+        <DatePicker x:Name="datePickerExpiry" HorizontalAlignment="Left" Margin="495,289,0,0" VerticalAlignment="Top" Width="200" Height="34" BorderBrush="Aquamarine" BorderThickness="3" FontSize="20"/>
     </Grid>
 </Window>

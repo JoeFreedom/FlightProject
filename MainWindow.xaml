@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlightDetails_CourseProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Search Window" Height="450" Width="800">
     <Grid>
         <TextBox x:Name="textBox_Search" HorizontalAlignment="Left" Margin="39,0,0,0" Text="" TextDecorations="" FontSize="20" FontStyle="Italic" TextWrapping="Wrap" VerticalAlignment="Center" Width="633" Height="56" BorderBrush="Aquamarine" BorderThickness="2"/>
         <Button x:Name="button_Search" Content="Search" HorizontalAlignment="Left" Margin="677,0,0,0" Background="Aquamarine" VerticalAlignment="Center" Height="56" Width="84" FontStyle="Italic" FontSize="15" Click="button_Search_Click"/>

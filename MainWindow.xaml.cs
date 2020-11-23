@@ -27,13 +27,13 @@ namespace FlightDetails_CourseProject
     /// </summary>
     public partial class MainWindow : Window
     {
-        public DBConnection dBconnection;
+        public DBConnection dbconnection;
         public static string search;
         public static int noNumber; // to be used if IsNumberEntered
         public MainWindow()
         {
             InitializeComponent();
-            dBconnection = new DBConnection();
+            dbconnection = new DBConnection();
         }
         private void button_Search_Click(object sender, RoutedEventArgs e)
         {
@@ -42,54 +42,65 @@ namespace FlightDetails_CourseProject
             // IsMoreThanOne
             // IfExist
             // how to use more than one parameter when searching
-            // pass a success message - successful
+            // where to output search result if more than one same surnames are found
             // pass an error message - unsuccessful
-            // a proper condition for searching
             // API documentation on the project
+            dbconnection.ConnectDB();
+            var passengerDetails = new PassengerDetails();
+            search = textBox_Search.Text;
 
-            if (search == "" )  // TO-DO not working as intended
+            if (search == "" ) 
             {
-                MessageBox.Show("Wrong search", "Error", MessageBoxButton.OK);
-                // how to clear search if IsOkClicked
+                MessageBox.Show("Wrong search", "Error", MessageBoxButton.OK); // how to clear search if IsOkClicked
                 return;
             }
-            else 
-            {
-                try
+            else
+            {  
+                var selectQuery = $"SELECT * from International_Passport WHERE Last_Name = '{search}'";
+                MySqlDataReader sqlDataReader = dbconnection.SelectQuery(selectQuery);
+
+                while (sqlDataReader.Read()) //you can use "if" to prevent repeated search "until additional window created"
                 {
-                    dBconnection.ConnectDB();
-                    search = textBox_Search.Text;
-                    var passengerDetails = new PassengerDetails();
-                    var selectQuery = $"SELECT * from International_Passport WHERE Last_Name = '{search}'";
-                    MySqlDataReader sqlDataReader = dBconnection.SelectQuery(selectQuery);
-                    //var selectQuery2 = $"SELECT * from International_Passport WHERE First_Name = '{search}'";
-                    // MySqlDataReader sqlDataReader2 = dBconnection.SelectQuery(selectQuery2);
-                    while (sqlDataReader.Read())
-                    {
-                        passengerDetails.textBox_Surname.Text = sqlDataReader.GetValue(1).ToString();
-                        passengerDetails.textBox_FirstName.Text = sqlDataReader.GetValue(2).ToString();
-                        passengerDetails.textBox_Sex.Text = sqlDataReader.GetValue(3).ToString();
+                    passengerDetails.textBox_Surname.Text = sqlDataReader.GetValue(1).ToString();
+                    passengerDetails.textBox_FirstName.Text = sqlDataReader.GetValue(2).ToString();
+                    passengerDetails.textBox_Sex.Text = sqlDataReader.GetValue(3).ToString();
+                    try  
+                    { 
                         var dateBD = (DateTime)sqlDataReader.GetValue(4);
-                        passengerDetails.textBox_DateOfBirth.Text = dateBD.ToString("d");
-                        passengerDetails.textBox_PassportNum.Text = sqlDataReader.GetValue(5).ToString();
-                        passengerDetails.textBox_Nationality.Text = sqlDataReader.GetValue(6).ToString();
-                        var dateIS = (DateTime)sqlDataReader.GetValue(7);
-                        passengerDetails.textBox_DateIssued.Text = dateIS.ToString("d");
-                        var dateEXP = (DateTime)sqlDataReader.GetValue(8);
-                        passengerDetails.textBox_DateOfExpiry.Text = dateEXP.ToString("d");
-                        passengerDetails.textBox_Visa.Text = sqlDataReader.GetValue(9).ToString();
-                        MessageBox.Show("Successful");
+                        passengerDetails.datepickerBD.Text = dateBD.ToString("d");
                     }
-                    passengerDetails.Show();
-                    //Close();
+                    catch
+                    {
+                        passengerDetails.datepickerBD.Text = "nil";
+                    }
+                    passengerDetails.textBox_PassportNum.Text = sqlDataReader.GetValue(5).ToString();
+                    passengerDetails.textBox_Nationality.Text = sqlDataReader.GetValue(6).ToString();
+                    try
+                    { 
+                        var dateIS = (DateTime)sqlDataReader.GetValue(7);
+                        passengerDetails.datePickerIssued.Text = dateIS.ToString("d");
+                    }
+                    catch
+                    {
+                        passengerDetails.datePickerIssued.Text = "nil";
+                    }
+                    try
+                    {
+                        var dateEXP = (DateTime)sqlDataReader.GetValue(8);
+                        passengerDetails.datePickerExpiry.Text = dateEXP.ToString("d");
+                    }
+                    catch 
+                    { 
+                        passengerDetails.datePickerExpiry.Text = "nil";
+                    }
+                        
+                    passengerDetails.textBox_Visa.Text = sqlDataReader.GetValue(9).ToString();
+                    passengerDetails.textBox_id.Text = sqlDataReader.GetValue(0).ToString();
+                    MessageBox.Show("Successful");
                 }
-                catch
-                {
-                    MessageBox.Show("Unuccessful");
-                }
+                passengerDetails.Show();
+              //Close();
             }
         }
-       
-
     }
 }

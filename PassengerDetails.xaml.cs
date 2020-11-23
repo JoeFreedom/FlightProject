@@ -25,52 +25,66 @@ namespace FlightDetails_CourseProject
             InitializeComponent();
             dbconnection = new DBConnection();
         }     
-        private void button_Add_Click(object sender, RoutedEventArgs e)
+        private void button_Add_Save_Click(object sender, RoutedEventArgs e)
         {
             // TO-DO 
             // IfPassengerExists
-            // 
+            // how to insert date TYPE into DB
             dbconnection.ConnectDB();
-            var insertQuery = $"INSERT INTO International_Passport(Last_Name, First_Name, Sex, Date_Of_Birth, Passport_Number, Nationality, Date_Issued, Date_Of_Expiry, Visa_Type)" +
-                $" VALUES('"+this.textBox_Surname.Text+ "','" + this.textBox_FirstName.Text + "','" + this.textBox_Sex.Text + "','" + this.textBox_DateOfBirth.Text + "','" + this.textBox_PassportNum.Text + "','" + this.textBox_Nationality.Text + "','" + this.textBox_DateIssued.Text + "','" + this.textBox_DateOfExpiry.Text + "','" + this.textBox_Visa.Text + "');";
-            MySqlCommand sqlCommand = new MySqlCommand(insertQuery);
-            MySqlDataReader dataReader;
-            dbconnection.InsertUpdateQuery(insertQuery);
-            dataReader = sqlCommand.ExecuteReader();           
-            while (dataReader.Read())
+            var selectQuery = $"SELECT Passport_Number FROM International_Passport";
+            MySqlDataReader sqlDataReader = dbconnection.SelectQuery(selectQuery);
+            if (sqlDataReader.Read())
             {
-                MessageBox.Show("Inserted");
+                MessageBox.Show("A passenger with the same details already exists");
+                return;
+            }
+            else
+            {
+                var insertQuery = $"INSERT INTO International_Passport(Last_Name, First_Name, Sex, Date_Of_Birth, Passport_Number, Nationality, Date_Issued, Date_Of_Expiry, Visa_Type)" +
+                $" VALUES('" + this.textBox_Surname.Text + "','" + this.textBox_FirstName.Text + "','" + this.textBox_Sex.Text + "','" + datepickerBD.SelectedDate.Value.Date.ToShortDateString() + "','" + this.textBox_PassportNum.Text + "','" + this.textBox_Nationality.Text + "','" + datePickerIssued.SelectedDate.Value.Date.ToShortDateString() + "','" + datePickerExpiry.SelectedDate.Value.Date.ToShortDateString() + "','" + this.textBox_Visa.Text + "');";
+                MySqlCommand sqlCommand = new MySqlCommand(insertQuery);
+                var count = dbconnection.InsertUpdateQuery(insertQuery);
+                if (count == 1)
+                {
+                    MessageBox.Show("Inserted successfully");
+                }
+                else
+                {
+                    MessageBox.Show("Not inserted");
+                }
             }
         }
         private void button_Edit_Click(object sender, RoutedEventArgs e)
         {
+            // ???how do I make data unenable for edit, until edit is clicked
             dbconnection.ConnectDB();
-            var updateQuery = $"UPDATE International_Passport SET Id='" + this.textBlock_id.Text + "'," + 
-                "Last_Name='" + this.textBox_Surname.Text + "', " +
+            var updateQuery = $"UPDATE International_Passport SET Last_Name='" + this.textBox_Surname.Text + "', " +
                 "First_Name='" + this.textBox_FirstName.Text + "', " +
                 "Sex='" + this.textBox_Sex.Text + "', " +
-                "Date_Of_Birth='" + this.textBox_DateOfBirth.Text + "', " +
+                "Date_Of_Birth='" + datepickerBD.SelectedDate.Value.Date.ToShortDateString() + "', " +
                 "Passport_Number='" + this.textBox_PassportNum.Text + "', " +
                 "Nationality='" + this.textBox_Nationality.Text + "', " +
-                "Date_Issued='" + this.textBox_DateIssued.Text + "', " +
-                "Date_Of_Expiry='" + this.textBox_DateOfExpiry.Text + "', " +
-                "Visa_Type='" + this.textBox_Visa.Text + "') " +
-                " WHERE Id='"+ this.textBlock_id.Text +"'";
-            // ???how to properly use ID to as the condition without it showing on the passenger window
-
+                "Date_Issued='" + datePickerIssued.SelectedDate.Value.Date.ToShortDateString() + "', " +
+                "Date_Of_Expiry='" + datePickerExpiry.SelectedDate.Value.Date.ToShortDateString() + "', " +
+                "Visa_Type='" + this.textBox_Visa.Text + "'" +
+                " WHERE Id=" + this.textBox_id.Text ;
+            // ???how to properly use Database ID as the condition without it showing on the passenger window
+            // to display edit data in the DB
             MySqlCommand sqlCommand = new MySqlCommand(updateQuery);
-            MySqlDataReader dataReader;
-            dbconnection.InsertUpdateQuery(updateQuery);
-            dataReader = sqlCommand.ExecuteReader();
-            while (dataReader.Read())
+            var count = dbconnection.InsertUpdateQuery(updateQuery);
+            if (count == 1)
             {
-                MessageBox.Show("Updated");
+                MessageBox.Show("Updated successfully");
             }
+            else
+            {
+                MessageBox.Show("Not updated");
+            }   
         }
+        // no delete method =  because only authorised personnels are allowed to do that.
         private void button_Close_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+             Close();  
         }
-
     }
 }
